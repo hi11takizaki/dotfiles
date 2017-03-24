@@ -1,17 +1,26 @@
-" vi互換をOFF
-set nocompatible
-
 " エンコーディング
 set encoding=utf-8  " デフォルトのエンコーディング
-set fileencodings=sjis  " 自動判定するエンコーディング 
+set fileencodings=sjis,euc-jp,utf-8  " 自動判定するエンコーディング 
 
 " 色の設定
 autocmd ColorScheme * highlight Constant ctermfg=229
 colorscheme lucius
 set background=dark
+" Tera Term
+"set t_ut=
+"set t_Co=256
+"colorscheme ron
+"autocmd ColorScheme * highlight LineNr ctermfg=7
+
+" クリップボードをOSと共有
+set clipboard+=unnamed
+
+" IME設定
+"set iminsert=0
+"set imsearch=-1
 
 " キーマップ
-nnoremap O :<C-u>call append(expand('.'), '')<CR>j
+nnoremap <silent> O :<C-u>call append(expand('.'), '')<CR>j
 noremap ; :
 noremap <C-j> <esc>
 inoremap <C-j> <esc>
@@ -29,21 +38,23 @@ nnoremap tj gt
 nnoremap tk gT
 noremap j gj
 noremap k gk
-source $VIMRUNTIME/mswin.vim
+vnoremap <silent> <c-p> "0p<cr>
+inoremap <silent> <c-v> <c-r>*
+"source $VIMRUNTIME/mswin.vim
 
 " 表示関連
 syntax on          " シンタックスカラーをON
 set showmatch      " 括弧の対応をハイライト
 set showcmd        " 入力中のコマンドを表示
 set showmode       " モード表示
+set notitle        " お礼を表示させない
 set number         " 行番号表示
-set title          " 編集中のファイル名を表示
 set ruler          " ルーラーの表示
 set wrap           " 画面幅で折り返す
 set list           " 不可視文字表示
 set listchars=tab:>\ ,extends:<     " 不可視文字の表示方法
 set guicursor=a:blinkon0            " カーソルを点滅させない
-set notitle        " お礼を表示させない
+set ambiwidth=double                " 全角文字の文字化け対策
 
 " タブ周り
 set tabstop=4       " Tab文字の幅
@@ -53,18 +64,21 @@ set smarttab        " 行頭の余白内で Tab を打ち込むと、'shiftwidth
 set expandtab       " TABを空白に展開
 set autoindent      " 自動インデント
 set smartindent     " スマートインデント
+"set breakindent
 
 " BackSpace設定
 set backspace=indent,eol,start  " バックスペースでなんでも消せるように。eol:改行,start:入力モードに入る前の文字
 
 " 検索関連
 set wrapscan    " 最後まで検索したら先頭へ戻る
-set ignorecase  " 大文字小文字無視
+"set ignorecase  " 大文字小文字無視
 set incsearch   " インクリメンタルサーチ
 set hlsearch    " 検索文字をハイライト
 
 " バックアップファイルを作らない
 set nobackup
+"set noundofile
+"set noswapfile
 
 " 折りたたみ設定
 "set foldmethod=indent  " インデントで折りたたみ
